@@ -279,9 +279,17 @@ html{scroll-behavior:smooth}
 .tg:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 #subsidi .kh2{margin-bottom:var(--s3)}
 #subsidi .kh2:has(+#subBody[hidden]){margin-bottom:0}
+@media (min-width:700px) and (max-width:1023px){
+  .sub th,.sub td{padding:10px 5px}
+  .sub th:first-child,.sub td:first-child{padding-left:10px}
+}
 @media (min-width:1024px){
-  .rcol.off #sg{grid-template-columns:minmax(0,1fr)}
-  .rcol.off .sp{max-height:190px}
+  .rcol{display:contents}
+  #unggulan{grid-column:2;grid-row:3;align-self:stretch}
+  .wrap.lebar #unggulan{align-self:start}
+  #subsidi{grid-column:1/-1}
+  .sub th,.sub td{padding:10px 14px}
+  .sub th:first-child,.sub td:first-child{padding-left:16px}
 }
 @media (prefers-reduced-motion:reduce){.tg svg{transition:none}}
 
@@ -424,7 +432,7 @@ h2 .rp{text-transform:none}
 </div>
 <div class="rcol">
 <section class="st" id="subsidi"><div class="kh2"><h2>Tabel subsidi</h2><button type="button" class="tg" id="subTgl" aria-expanded="true" aria-controls="subBody"><span>Sembunyikan</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
-<div id="subBody"><p class="hint">Angsuran kredit dengan DP 10%, bisa proses semua leasing. Rincian di bawah dalam rupiah, geser ke samping untuk melihat semua kolom.</p><div class="tw"><table id="ts" class="sub"></table></div><p class="hint nt"><b>Konsumen bayar DP sesuai kolom &quot;DP Bayar 35x&quot;, angsuran sesuai kolom &quot;Angsuran/Bulan&quot;.</b><br>Jika ada negosiasi, silakan konfirmasi (konsumen RO / kenal / bukan mishop).</p></div>
+<div id="subBody"><p class="hint">Angsuran kredit dengan DP 10%, bisa proses semua leasing. Rincian di bawah dalam rupiah. Di HP, geser ke samping untuk melihat semua kolom.</p><div class="tw"><table id="ts" class="sub"></table></div><p class="hint nt"><b>Konsumen bayar DP sesuai kolom &quot;DP Bayar 35x&quot;, angsuran sesuai kolom &quot;Angsuran/Bulan&quot;.</b><br>Jika ada negosiasi, silakan konfirmasi (konsumen RO / kenal / bukan mishop).</p></div>
 </section>
 <section class="st" id="unggulan"><div class="kh2"><h2>Unit pilihan</h2><button type="button" class="tg" id="ugTgl" aria-expanded="true" aria-controls="ugBody"><span>Sembunyikan</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
 <div id="ugBody"><p class="hint">Ketuk warna untuk melihat pilihan warna unit.</p>
@@ -799,7 +807,6 @@ function subSet(open,simpan){
   $('subBody').hidden=!open;
   const b=$('subTgl');b.setAttribute('aria-expanded',open?'true':'false');
   b.querySelector('span').textContent=open?'Sembunyikan':'Tampilkan';
-  document.querySelector('.rcol').classList.toggle('off',!open);
   cekLebar();
   if(simpan){try{localStorage.setItem('subOpen',open?'1':'0')}catch(e){}}
 }
@@ -893,7 +900,7 @@ window.addEventListener('popstate',()=>{if($('dtl').classList.contains('on'))dtl
   p.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)dtlGeser(dx<0?1:-1)},{passive:true});
 })();
 </script><script>
-const APP_VER='2026-11-10.3';
+const APP_VER='2026-11-10.4';
 (function(){
   const uv=document.getElementById('uv'),ub=document.getElementById('upd'),nb=document.getElementById('nb');
   uv.textContent='Versi '+APP_VER;
