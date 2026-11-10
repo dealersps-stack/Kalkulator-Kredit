@@ -249,27 +249,6 @@ html{scroll-behavior:smooth}
 .kc.cur{box-shadow:0 0 0 3px var(--red),0 8px 16px -8px rgba(0,0,0,.4)}
 .rcol{display:contents}
 .rcol>section.st{padding-top:var(--s5);border-top:1px solid var(--line);min-width:0}
-.sg{display:flex;gap:var(--s3);overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 12px;margin:0 -2px;scrollbar-width:thin;overscroll-behavior-x:contain}
-.sc{flex:0 0 min(72%,236px);scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;padding:8px 8px 12px;border-radius:14px;background:linear-gradient(180deg,var(--gr2),var(--gr1));color:#fff;border-bottom:3px solid var(--red);box-shadow:var(--soft)}
-.sp{height:130px;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.sp img{width:100%;height:100%;object-fit:contain;padding:6px}
-.sc h3{margin:2px 3px 0;font-size:15px;font-weight:800;line-height:1.1;text-transform:uppercase;color:#fff}
-.sc .so{margin:0 3px;font-size:13px;font-weight:600;color:#B5BBC6;font-variant-numeric:tabular-nums}
-.sc .kw{gap:6px;padding:2px 3px 0;min-height:30px;flex-wrap:nowrap}
-.sc .kw button{width:22px;height:22px;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
-.sc .kw button.on{box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 0 0 2px var(--gr1),0 0 0 4px var(--red)}
-.sc .kn{color:#E8EAEE;font-size:12px}
-@media (min-width:700px){
-  .sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;padding:2px 2px 4px}
-  .sc{flex:none}
-}
-@media (min-width:1024px){
-  .rcol{display:flex;flex-direction:column;gap:var(--s5);grid-column:2;grid-row:3;align-self:stretch}
-  #unggulan{flex:1;display:flex;flex-direction:column}
-  #unggulan .sg{flex:1}
-  .sp{height:auto;flex:1;min-height:120px;max-height:240px}
-}
-
 /* ===== Tombol buka/tutup tabel subsidi ===== */
 [hidden]{display:none!important}
 .tg{all:unset;cursor:pointer;box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--key);border:1px solid var(--line);box-shadow:0 2px 0 var(--edge);font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
@@ -285,8 +264,6 @@ html{scroll-behavior:smooth}
 }
 @media (min-width:1024px){
   .rcol{display:contents}
-  #unggulan{grid-column:2;grid-row:3;align-self:stretch}
-  .wrap.lebar #unggulan{align-self:start}
   #subsidi{grid-column:1/-1}
   .sub th,.sub td{padding:10px 14px}
   .sub th:first-child,.sub td:first-child{padding-left:16px}
@@ -296,30 +273,40 @@ html{scroll-behavior:smooth}
 /* ===== Kolom kiri mandiri + tombol lipat tabel angsuran & unit pilihan ===== */
 .lcol{display:contents}
 .lcol>section.st{padding-top:var(--s5);border-top:1px solid var(--line);min-width:0}
-#angsuran .kh2,#unggulan .kh2{margin-bottom:var(--s3)}
+#angsuran .kh2,#katalog .kh2{margin-bottom:var(--s3)}
 .st .kh2:has(+[hidden]){margin-bottom:0}
 .kh2 h2{min-width:0}
-#ugBody{display:flex;flex-direction:column;flex:1}
-#ugBody .sg{flex:1}
 @media (min-width:1024px){
   .lcol{display:flex;flex-direction:column;gap:var(--s5);grid-column:1;grid-row:3;align-self:start;min-width:0}
-  #unggulan.tutup{flex:none}
 }
 
-/* ===== Mode lebar: tabel angsuran, tabel subsidi, unit pilihan semuanya ditutup ===== */
+/* ===== Katalog vertikal: memanjang ke bawah, tinggi mengikuti tabel angsuran ===== */
+#katalog{padding-top:var(--s5);border-top:1px solid var(--line);min-width:0;max-width:100%}
+.ka button{display:flex;align-items:center;justify-content:center;line-height:1}
+.ktw{position:relative;height:min(72vh,680px);min-height:380px}
+.kt{position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);align-content:start;overflow-x:hidden;overflow-y:auto;scroll-snap-type:none;overscroll-behavior:contain;margin:0;padding:5px 5px 70px;scrollbar-width:thin}
+.kc{flex:none;scroll-snap-align:none;min-width:0;scroll-margin:8px}
+.kp{height:120px}
+.kc h3{font-size:14px}
+.kw{gap:8px}
+.kw button{width:26px;height:26px}
+.kh{padding:8px 6px;font-size:13px;gap:6px}
+.kh svg{width:16px;height:16px}
+.kfab{position:sticky;bottom:18px;height:0;z-index:6;pointer-events:none;display:flex;justify-content:center}
+.kfab button{all:unset;pointer-events:auto;cursor:pointer;position:absolute;bottom:0;display:flex;align-items:center;gap:8px;padding:11px 20px 11px 16px;border-radius:999px;background:var(--gr1);color:#fff;font-size:14px;font-weight:700;border-bottom:3px solid var(--red);box-shadow:0 8px 18px -6px rgba(0,0,0,.55)}
+.kfab button:active{transform:translateY(1px)}
+.kfab button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.kfab button[hidden]{display:none}
+@media (min-width:1024px) and (max-width:1199px){#tb th,#tb td{padding:9px 4px;font-size:12.5px}}
+@media (min-width:700px) and (max-width:1023px){
+  .kt{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kp{height:140px}.kc h3{font-size:15px}
+}
 @media (min-width:1024px){
-  .wrap.lebar .lcol{display:contents}
-  .wrap.lebar #angsuran{grid-column:1;grid-row:3;align-self:start}
-  .wrap.lebar .rcol{grid-column:2;grid-row:3;align-self:start}
-  .wrap.lebar #katalog{grid-column:1/-1;grid-row:4}
-  .wrap.lebar .kt{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 4*var(--s3))/5);scroll-padding-inline:5px}
-  .wrap.lebar #kth{display:none}
-  .wrap.lebar #kq{max-width:520px}
-  .wrap.lebar #katalog{scroll-margin-top:76px}
-  .wrap.lebar .kqn{margin:var(--s1) 0 var(--s2);min-height:0}
-  .wrap.lebar .kp{height:136px}
-  .wrap.lebar .kc{gap:4px;padding-bottom:10px}
-  .wrap.lebar .kw{min-height:30px}
+  #katalog{grid-column:2;grid-row:3;align-self:stretch;display:flex;flex-direction:column}
+  .ktw{flex:1 1 auto;height:auto;min-height:560px}
+  .kp{height:150px}.kc h3{font-size:15px}
+  .kh{font-size:14px;gap:10px}.kh svg{width:20px;height:20px}
 }
 
 /* ===== Detail unit (popup besar) ===== */
@@ -423,20 +410,17 @@ h2 .rp{text-transform:none}
 <div id="ttBody"><p class="hint">Ketuk baris untuk mengganti DP.</p>
 <div class="tw"><table id="tb"></table></div></div>
 </section>
-<section class="st" id="katalog"><div class="kh2"><h2>Katalog motor</h2><div class="ka"><button type="button" id="ktp" aria-label="Geser ke kiri">&#8249;</button><button type="button" id="ktn" aria-label="Geser ke kanan">&#8250;</button></div></div>
+</div>
+<section class="st" id="katalog"><div class="kh2"><h2>Katalog motor</h2><div class="ka"><button type="button" id="ktp" aria-label="Gulir katalog ke atas"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button><button type="button" id="ktn" aria-label="Gulir katalog ke bawah"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div></div>
 <p class="hint" id="kth"></p>
 <input id="kq" type="search" placeholder="Cari unit di katalog, mis. Vario, Beat, PCX" autocomplete="off" enterkeyhint="search" aria-label="Cari unit di katalog">
 <p class="hint kqn" id="kqn" aria-live="polite"></p>
-<div class="kt" id="kt" tabindex="0" aria-label="Katalog motor, geser ke samping"></div>
+<div class="ktw"><div class="kt" id="kt" tabindex="0" aria-label="Katalog motor, gulir ke bawah untuk unit lainnya"></div></div>
+<div class="kfab"><button type="button" id="ktd" aria-label="Lihat unit lain di bawah"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span>Lihat unit lain</span></button></div>
 </section>
-</div>
 <div class="rcol">
 <section class="st" id="subsidi"><div class="kh2"><h2>Tabel subsidi</h2><button type="button" class="tg" id="subTgl" aria-expanded="true" aria-controls="subBody"><span>Sembunyikan</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
 <div id="subBody"><p class="hint">Angsuran kredit dengan DP 10%, bisa proses semua leasing. Rincian di bawah dalam rupiah. Di HP, geser ke samping untuk melihat semua kolom.</p><div class="tw"><table id="ts" class="sub"></table></div><p class="hint nt"><b>Konsumen bayar DP sesuai kolom &quot;DP Bayar 35x&quot;, angsuran sesuai kolom &quot;Angsuran/Bulan&quot;.</b><br>Jika ada negosiasi, silakan konfirmasi (konsumen RO / kenal / bukan mishop).</p></div>
-</section>
-<section class="st" id="unggulan"><div class="kh2"><h2>Unit pilihan</h2><button type="button" class="tg" id="ugTgl" aria-expanded="true" aria-controls="ugBody"><span>Sembunyikan</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
-<div id="ugBody"><p class="hint">Ketuk warna untuk melihat pilihan warna unit.</p>
-<div class="sg" id="sg"></div></div>
 </section>
 </div>
 <section class="st kd" id="kedu"><div class="kh2"><h2>Tabel OTR Kedu</h2><button type="button" class="tg" id="kdTgl" aria-expanded="true" aria-controls="kdBody"><span>Sembunyikan</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
@@ -497,7 +481,7 @@ function draw(){
   $('lo').textContent=rp(m.r[0][0]*1000);$('hi').textContent=rp(m.r[n-1][0]*1000);
   $('ten').innerHTML=m.t.map(t=>`<button class="${t===ten?'on':''}" data-t="${t}">${t} bln</button>`).join('');
   $('tt').innerHTML='Tabel angsuran '+m.n+' <span class="rp">(Rp)</span>';
-  const s=Math.max(0,Math.min(ri-3,n-7)),rows=m.r.slice(s,s+7);
+  const s=0,rows=m.r;
   $('tb').innerHTML='<tr><th>DP</th>'+m.t.map(t=>`<th>${t} bln</th>`).join('')+'</tr>'+
     rows.map((x,k)=>`<tr class="${s+k===ri?'sel':''}" data-r="${s+k}"><td>${x[0]*1000/1e6}jt</td>`+m.t.map(t=>`<td class="mono${t===ten?' c':''}">${ang(m,x,t).toLocaleString('id-ID')}</td>`).join('')+'</tr>').join('');
   const i=1+m.t.indexOf(ten),nor=r[i]*1000,pt=pot(m,ten),a=nor-pt,kg=KURANG[ten]||0,rin=kg?`${rp(m.p)} - ${rp(kg)}`:rp(m.p);
@@ -720,7 +704,7 @@ $('mi').onclick=()=>{ri=Math.max(0,ri-1);draw()};
 $('pl').onclick=()=>{ri=Math.min(cur.r.length-1,ri+1);draw()};
 $('no').oninput=draw;pick(0);
 const KC=D.m.map(()=>0);
-$('kth').textContent=D.m.length+' tipe motor. Geser ke samping, ketuk foto motor untuk tampilan besar dan pilihan warna lengkap. Tombol kirim mengirim foto semua warna tipe itu ke WhatsApp.';
+$('kth').textContent=D.m.length+' tipe motor. Gulir ke bawah atau tekan tombol panah untuk melihat unit lain, ketuk foto motor untuk tampilan besar dan pilihan warna lengkap. Tombol kirim mengirim foto semua warna tipe itu ke WhatsApp.';
 $('kt').innerHTML=D.m.map((m,i)=>{const L=imgs(m),c=L[0];
   return `<article class="kc" data-i="${i}"><div class="kp"><img src="${c[1]}" alt="${m.n} ${c[0]}" decoding="async" loading="lazy"></div><h3>${m.n}</h3><p class="ko">OTR ${rp(m.o)}</p><div class="kw">${L.map((x,k)=>`<button type="button" data-c="${k}" class="${k?'':'on'}" style="--c:${x[2]}" aria-label="${x[0]}" title="${x[0]}"></button>`).join('')}</div><p class="kn">${c[0]}</p><button type="button" class="kh" title="Kirim foto semua warna ${m.n}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm1 11h14l-4.5-6-3.5 4.5L8.5 12z"/></svg><span>Kirim + foto unit<small>${L.length} foto warna</small></span></button></article>`}).join('');
 $('kt').onclick=e=>{
@@ -777,30 +761,18 @@ async function kirimFoto(i,btn){
 
 /* pencarian di katalog: langsung geser ke unit yang cocok */
 let KM=[],KMi=0;
-function geserKe(c){const t=$('kt');t.scrollTo({left:Math.max(0,c.getBoundingClientRect().left-t.getBoundingClientRect().left+t.scrollLeft-6),behavior:'smooth'})}
+function geserKe(c,blok){c.scrollIntoView({behavior:'smooth',block:blok||'center',inline:'nearest'})}
 function cariKatalog(next){
   const q=$('kq').value.trim().toLowerCase().replace(/\s+/g,' '),cards=[...document.querySelectorAll('#kt .kc')];
   cards.forEach(c=>c.classList.remove('hit','cur'));
   KM=q?cards.filter(c=>D.m[+c.dataset.i].n.toLowerCase().includes(q)):[];
   KMi=next&&KM.length?(KMi+1)%KM.length:0;
   KM.forEach(c=>c.classList.add('hit'));
-  if(KM.length){KM[KMi].classList.add('cur');geserKe(KM[KMi])}
+  if(KM.length){KM[KMi].classList.add('cur');geserKe(KM[KMi],'center')}
   $('kqn').textContent=!q?'':KM.length?KM.length+' unit cocok'+(KM.length>1?' ('+(KMi+1)+'/'+KM.length+'), tekan Enter untuk unit berikutnya':''):'Unit tidak ditemukan';
 }
 $('kq').oninput=()=>cariKatalog(false);
 $('kq').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();cariKatalog(true)}};
-
-/* unit pilihan (3 unit, ganti nama di daftar ini jika ingin unit lain) */
-const SOROT=['SCOOPY SMART KEY','Vario 160 ABS','ADV 160 ABS'];
-$('sg').innerHTML=SOROT.map(n=>D.m.findIndex(m=>m.n===n)).filter(i=>i>=0).map(i=>{
-  const m=D.m[i],L=imgs(m),c=L[0];
-  return `<article class="sc" data-i="${i}"><div class="sp"><img src="${c[1]}" alt="${m.n} ${c[0]}" decoding="async"></div><h3>${m.n}</h3><p class="so">OTR ${rp(m.o)}</p><div class="kw">${L.map((x,k)=>`<button type="button" data-c="${k}" class="${k?'':'on'}" style="--c:${x[2]}" aria-label="${x[0]}" title="${x[0]}"></button>`).join('')}</div><p class="kn">${c[0]}</p></article>`}).join('');
-$('sg').onclick=e=>{
-  const b=e.target.closest('.kw button'),a=e.target.closest('.sc');if(!b||!a)return;
-  const L=imgs(D.m[+a.dataset.i]),k=+b.dataset.c,im=a.querySelector('img');
-  im.src=L[k][1];im.alt=D.m[+a.dataset.i].n+' '+L[k][0];a.querySelector('.kn').textContent=L[k][0];
-  a.querySelectorAll('.kw button').forEach((x,j)=>x.classList.toggle('on',j===k));
-};
 
 /* buka/tutup tabel subsidi (pilihan diingat di perangkat ini) */
 function subSet(open,simpan){
@@ -828,17 +800,25 @@ function buatLipat(btnId,bodyId,key,def){
   let buka=def!==false;try{const v=localStorage.getItem(key);if(v!==null)buka=v!=='0'}catch(e){}
   set(buka,false);b.onclick=()=>set(bd.hidden,true);return set;
 }
-buatLipat('ttTgl','ttBody','ttOpen');buatLipat('ugTgl','ugBody','ugOpen');
+buatLipat('ttTgl','ttBody','ttOpen');
 const kdSet=buatLipat('kdTgl','kdBody','kdOpen',false),mtSet=buatLipat('mtTgl','mtBody','mtOpen',false);
 document.querySelector('.qn a[href="#kedu"]').addEventListener('click',()=>kdSet(true,true));
 document.querySelector('.qn a[href="#maticKedu"]').addEventListener('click',()=>mtSet(true,true));
 
-function cekLebar(){
-  const semua=$('subBody').hidden&&$('ttBody').hidden&&$('ugBody').hidden;
-  document.querySelector('.wrap').classList.toggle('lebar',semua);
+function cekLebar(){}
+const ktLangkah=()=>{const t=$('kt');return Math.max(220,Math.min(t.clientHeight,window.innerHeight)*0.85)};
+const ktGeser=d=>$('kt').scrollBy({top:d*ktLangkah(),behavior:'smooth'});
+function ktFab(){
+  const t=$('kt'),ujung=t.scrollTop+t.clientHeight>=t.scrollHeight-8,b=$('ktd');
+  b.querySelector('span').textContent=ujung?'Kembali ke atas':'Lihat unit lain';
+  b.querySelector('svg').style.transform=ujung?'rotate(180deg)':'';
+  b.setAttribute('aria-label',ujung?'Kembali ke atas katalog':'Lihat unit lain di bawah');
+  $('ktp').disabled=t.scrollTop<=2;$('ktn').disabled=ujung;
+  $('ktp').style.opacity=$('ktp').disabled?.4:1;$('ktn').style.opacity=$('ktn').disabled?.4:1;
 }
-const ktGeser=d=>{const t=$('kt'),c=t.querySelectorAll('.kc');if(c.length<2)return;const p=c[1].offsetLeft-c[0].offsetLeft,n=Math.max(1,Math.floor((t.clientWidth+p-c[0].offsetWidth)/p));t.scrollBy({left:d*n*p,behavior:'smooth'})};
 $('ktp').onclick=()=>ktGeser(-1);$('ktn').onclick=()=>ktGeser(1);
+$('ktd').onclick=()=>{const t=$('kt');if(t.scrollTop+t.clientHeight>=t.scrollHeight-8)t.scrollTo({top:0,behavior:'smooth'});else ktGeser(1)};
+$('kt').addEventListener('scroll',ktFab,{passive:true});window.addEventListener('resize',ktFab);ktFab();
 
 /* ===== detail unit: ketuk foto/nama motor di katalog untuk tampilan besar ===== */
 let DI=-1;
@@ -869,7 +849,7 @@ function dtlBuka(i,dariRiwayat){
 function dtlTutup(dariRiwayat){
   if(!$('dtl').classList.contains('on'))return;
   $('dtl').classList.remove('on');document.body.classList.remove('dtl-open');
-  const a=document.querySelector('#kt .kc[data-i="'+DI+'"]');if(a)geserKe(a);
+  const a=document.querySelector('#kt .kc[data-i="'+DI+'"]');if(a)geserKe(a,'nearest');
   if(!dariRiwayat&&history.state&&history.state.dtl){try{history.back()}catch(e){}}
 }
 function dtlGeser(d){
@@ -900,7 +880,7 @@ window.addEventListener('popstate',()=>{if($('dtl').classList.contains('on'))dtl
   p.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)dtlGeser(dx<0?1:-1)},{passive:true});
 })();
 </script><script>
-const APP_VER='2026-11-10.4';
+const APP_VER='2026-11-10.5';
 (function(){
   const uv=document.getElementById('uv'),ub=document.getElementById('upd'),nb=document.getElementById('nb');
   uv.textContent='Versi '+APP_VER;
